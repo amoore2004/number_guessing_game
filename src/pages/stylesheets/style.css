@@ -1,0 +1,65 @@
+/*
+  btn
+  title
+  guess_tag
+  text_input
+  debug
+  announce
+  debug_label
+*/
+
+
+body {
+  background-color: #f4f4f4;
+  font-family: "Smooch Sans", sans-serif;
+}
+
+#title {
+  font-size: 65px;
+  margin: 1px 1px 1px 1px;
+  justify-content: center;
+  display: flex;
+}
+
+#guess_tag {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin: 1px 1px 1px 1px;
+}
+
+#text_input {
+  display: grid;
+  place-items: center;
+}
+input {
+  display: flex;
+  justify-content: center;
+}
+#debug_label {
+  margin-bottom: 1px;
+  font-size: 13px;
+  color: #adadad;
+}
+#debug {
+  margin-top: 1px;
+  color: #f18956;
+  border: 3px solid #f18956;
+  border-radius: 6px;
+  padding: 10px;
+  display: inline-block;
+}
+
+#announce {
+  margin: 1px 1px 1px 1px;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+
+}
+
+hr {
+  height: 4px;
+  border: none;
+  background-color: black
+}
