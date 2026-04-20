@@ -5,10 +5,15 @@ Date started: 15:52 April 5, 2026
 The structure of this script and additional comments should be used for later reference when working on other projects. When coding structure is improved, this script will be edited after it is completed.
 */
 
+/*          Common Mistakes Made
+        Code after the return statement. A function will end when return has been called.
+
+*/
+
 // Beginning Variables
 let input;
 let guesses = 20;
-const MAX_TARGET_NUMBER = 10;
+const MAX_TARGET_NUMBER = 50;
 let randomNumber = Math.floor(Math.random() * MAX_TARGET_NUMBER);
 let iliketurtles;
 const ANNOUNCER_TEXT = document.getElementById("announce");
@@ -20,14 +25,33 @@ const DEBUG_FIELD = document.getElementById("debug");
 
 // Game Events
     // every action is individually divided into functions for cleaner coding.
+    
+function checkNumber(guessedNumber) {
+    if (guessedNumber === randomNumber) {
+        return [true, 100];
+    }
+    if (guessedNumber < randomNumber) {
+        return [false, 150];
+    }
+    if guessedNumber > randomNumber) {
+        return [false, 200];
+    }
+    return [false, 0];
+}
+
 function announce(numberOfGuesses, guessedNumber) {
     // Default messages. 
     if (guesses === BEGINNING_GUESSES) {
         return "Let the games begin!";
     }
     if (guesses === 15) {
+        if (checkNumber()[0] == true) {
+            SUBMIT_BUTTON.removeEventListener("click", onGuessButtonClick);
+            return "Congratulations! You won!";
+        }
+            
+        }
         return "You are half way through your guesses. Be wise.";
-    }
     if (guesses === 0) {
         SUBMIT_BUTTON.removeEventListener("click", onGuessButtonClick);
         return "Ruh roh! You lost the game.";
@@ -42,7 +66,7 @@ function announce(numberOfGuesses, guessedNumber) {
     if (guessedNumber < randomNumber) {
         return "Your guess is below the correct number. Please guess higher.";
     }
-    if (guessedNumber == randomNumber) {
+    if (checkNumber()[0] == true) {
         SUBMIT_BUTTON.removeEventListener("click", onGuessButtonClick);
         return "Congratulations! You won!";
     }
@@ -50,7 +74,6 @@ function announce(numberOfGuesses, guessedNumber) {
 }
 
 function onGuessButtonClick() {
-    guesses = guesses - 1;
     iliketurtles = Number(TEXT_FIELD.value);
     GUESS_COUNTER.textContent = `Guesses: ${guesses}`;
     ANNOUNCER_TEXT.textContent = announce(guesses, iliketurtles);
@@ -65,3 +88,4 @@ SUBMIT_BUTTON.addEventListener("click", onGuessButtonClick);
 // Initialization
 GUESS_COUNTER.textContent = `Guesses: ${guesses}`;
 ANNOUNCER_TEXT.textContent = "Let the games begin!";
+DEBUG_FIELD.textContent = `Your random number is: ${randomNumber}`;
